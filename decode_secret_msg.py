@@ -42,11 +42,12 @@ def decode_secret_msg(url):
             except ValueError:
                 continue
 
-    # Let's verify we got something
+    # verify if we extracted data points
     if not data_points:
         print("No data found. Check URL.")
         return
 
+    # print statement to check if the data was extracted
     print(f"Successfully extracted {len(data_points)} data points.")
     
     # build grid with height = max_y + 1 and width = max_x + 1
