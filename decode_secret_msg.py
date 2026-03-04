@@ -49,9 +49,19 @@ def decode_secret_msg(url):
 
     print(f"Successfully extracted {len(data_points)} data points.")
     
-    # --- NEXT WE WILL BUILD THE GRID HERE ---
-    pass
+    # build grid with height = max_y + 1 and width = max_x + 1
+    grid = [[' ' for _ in range(max_x + 1)] for _ in range(max_y + 1)]
+
+    # use dictionary to fill grid
+    for (x, y), char in data_points.items():
+        grid[y][x] = char
+
+    for y in range(max_y, -1, -1):
+        print("".join(grid[y]))
 
 if __name__ == "__main__":
-    test_url = "https://docs.google.com/document/d/e/2PACX-1vTMOmshQe8YvaRXi6gEPKKlsC6UpFJSMAk4mQjLm_u1gmHdVVTaeh7nBNFBRlui0sTZ-snGwZM4DBCT/pub"
-    decode_secret_msg(test_url)
+    user_url = input("Enter Google Doc URL: ").strip()
+    if user_url:
+        decode_secret_msg(user_url)
+    else:
+        print("No URL found.")
